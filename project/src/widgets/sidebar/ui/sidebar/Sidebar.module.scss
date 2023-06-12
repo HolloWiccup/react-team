@@ -1,4 +1,4 @@
-.Sidebar{
+.Sidebar {
   width: var(--sidebar-width);
   height: calc(100vh - var(--navbar-height));
   background: var(--inverted-bg-color);
@@ -6,10 +6,11 @@
   transition: width .3s;
 }
 
-.collapsed{
+.collapsed {
   width: var(--sidebar-width-collapsed);
 }
-.switchers{
+
+.switchers {
   width: 100%;
   position: absolute;
   bottom: 20px;
