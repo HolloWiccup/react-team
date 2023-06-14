@@ -9,8 +9,8 @@ export default function Pagination({currentPage, totalPage, forward, back}: Pagi
     return (
         <div className='pagin-block'>
             <div className='pagin-btns'>
-                <button className={backClass} onClick={back}>Назад</button>
-                <button className={forwardClass} onClick={forward}>Вперед</button>
+                <button className={backClass} onClick={back} disabled={currentPage === 1}>Назад</button>
+                <button className={forwardClass} onClick={forward} disabled={currentPage === totalPage}>Вперед</button>
             </div>
             <p className='current-page'>Текущая страница: {currentPage} из {totalPage}</p>
         </div>

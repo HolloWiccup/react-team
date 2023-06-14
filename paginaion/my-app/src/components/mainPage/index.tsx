@@ -29,6 +29,7 @@ export default function MainPage({itemsPerPage} : MainProps) {
         }))
     }
 
+
     const mapped = sliced.map(item=> (<p key={item}>{item}</p>))
     return (
         <div>
