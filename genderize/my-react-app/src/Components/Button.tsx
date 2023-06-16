@@ -1,4 +1,4 @@
-import { buttonProps } from "../Types/ButtonType"
+import { buttonProps } from "../types/ButtonType"
 
 export default function Button({handleButton}: buttonProps) {
     return (

@@ -1,4 +1,4 @@
-import { GenderProps } from "../Types/GenderShowType"
+import { GenderProps } from "../types/GenderShowType"
 
 export default function GenderShow(props: GenderProps) {
     const {resultName, gender, probability, isShown} = props

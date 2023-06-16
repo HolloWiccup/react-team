@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { useState } from 'react'
 import './App.css'
-import Button from './Components/Button';
-import TextInput from './Components/TextInput';
-import GenderShow from './Components/GenderMain';
-import { DataObject } from './Types/DataObjectType';
+import Button from './components/Button.js';
+import TextInput from './components/TextInput.js';
+import GenderShow from './components/GenderMain.js';
+import { DataObject } from './types/DataObjectType.js';
 import { REQUEST, INITIAL } from './helper.js';
 
 const App = ()=>  {
@@ -22,14 +22,14 @@ const App = ()=>  {
 
   const genderDefine = () => {
     const url = `${REQUEST.SERVER_URL}?name=${inputName}`;
+    if(inputName) {
       try {
         fetch(url)
       .then(response=> response.json())
       .then(result=> 
-        setGenderData(prevState=> {
+        setGenderData(() => {
           setShowResult(true)
           return {
-            ...prevState,
             name: result.name,
             gender: result.gender,
             probability: result.probability
@@ -39,6 +39,9 @@ const App = ()=>  {
       }catch (err) {
         console.log(err)
       }
+    } else {
+      alert('Type the name')
+    }
   }
 
   return (
