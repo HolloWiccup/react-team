@@ -1,4 +1,5 @@
-import { AppLink, AppLinkTheme } from 'shared/ui/app-link/AppLink'
-import { Button, ButtonTheme } from 'shared/ui/button/Button'
+import { AppLink, AppLinkTheme } from './app-link/AppLink'
+import { Button, ButtonTheme } from './button/Button'
+import { Loader } from './loader/Loader'
 
-export { AppLink, AppLinkTheme, Button, ButtonTheme }
+export { AppLink, AppLinkTheme, Button, ButtonTheme, Loader }

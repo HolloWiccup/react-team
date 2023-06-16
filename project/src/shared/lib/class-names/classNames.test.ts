@@ -1,5 +1,6 @@
 // noinspection ES6PreferShortImport
-import { classNames } from './classNames'
+
+import { classNames } from 'shared/lib/class-names/classNames'
 
 describe('classNames', () => {
   test('with only first', () => {

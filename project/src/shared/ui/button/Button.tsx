@@ -1,4 +1,4 @@
-import { classNames } from 'shared'
+import { classNames } from 'shared/lib'
 import cls from './Button.module.scss'
 import { type ButtonHTMLAttributes } from 'react'
 
@@ -14,7 +14,11 @@ type ButtonProps = {
 export const Button = (props: ButtonProps) => {
   const { className = '', theme = '', children, ...otherProps } = props
   return (
-    <button className={classNames(cls.Button, {}, [className, cls[theme]])} {...otherProps}>
+    <button
+      type={'button'}
+      className={classNames(cls.Button, {}, [className, cls[theme]])}
+      {...otherProps}
+    >
       {children}
     </button>
   )
