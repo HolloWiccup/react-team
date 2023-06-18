@@ -1,6 +1,6 @@
 const FORM = document.querySelector(".search-form");
 const KELCIN_TO_CELSIUS = (k) => Math.round(k - 273.15);
-const FAV_ICO = document.querySelector(".like");
+const LIKE_BUTTON = document.querySelector(".like");
 let currentCityName = document.querySelector(".active-city").textContent;
 
 FORM.addEventListener("submit", formHandler);
