@@ -211,14 +211,25 @@ ul {
 /*----FAVORITS TAB------*/
 
 .city-list-wrapper{
-	padding-top: 10%;
-	padding-left: 6%;
+	padding: 10% 0 10% 4%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 5%;
+	overflow: hidden;
 }
 
 .city-in-fav-list {
 	margin-bottom: 0.7em;
+}
+
+.fav-city {
+	margin-bottom: 0.8em;
+	cursor: pointer;
+	width: max-content;
+	padding: 0 2%;
+}
+.fav-city:hover{
+	background-color: black;
+	color: white;
 }

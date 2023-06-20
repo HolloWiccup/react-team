@@ -1,86 +1,96 @@
+import { ICONS_SRC, ELEMENT } from "./data.js";
+import {FAV_CITIES, LIKE_BUTTON, likeInteraction, likeIconUpdate, addToFavList } from "./favorites.js";
+
+const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
+const apiKey = "ff9a92deb11480f9014deb01fb57bd09";
+const DEFAULT_CITY = 'Rome';
+
 const FORM = document.querySelector(".search-form");
 const KELCIN_TO_CELSIUS = (k) => Math.round(k - 273.15);
-const LIKE_BUTTON = document.querySelector(".like");
-let currentCityName = document.querySelector(".active-city").textContent;
+const SEARCH_TARGET_WEATHER_OBJECT = {
+	name: '',
+	state: '',
+	temp: '',
+	feels_like: '',
+	sunrise: '',
+	sunset: '',
+	icon: '',
+};
 
-FORM.addEventListener("submit", formHandler);
-FAV_ICO.addEventListener("click", createFavCity);
+document.addEventListener('DOMContentLoaded', onloadTab);
+FORM.addEventListener('submit', formHandler);
+LIKE_BUTTON.addEventListener('click', likeHandler);
+ELEMENT.FAV_LIST.addEventListener('click', favListHandler);
 
-function formHandler(event) {
-  event.preventDefault();
- 
-  getWeatherData();
-  rebootFavIco();
+function likeHandler(){
+	likeInteraction();
+	likeIconUpdate();
 }
 
-function getWeatherData() {
-  const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
-  let cityName = getCityName();
-  const apiKey = "ff9a92deb11480f9014deb01fb57bd09";
-  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
+function onloadTab(){
+	getWeatherData(serverUrl, DEFAULT_CITY, apiKey);
+}
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((weatherData) => render(weatherData))
-	 .catch(error => alert("Error. Please try again later."));
+function formHandler(event) {
+	event.preventDefault();
+	
+  	getWeatherData(serverUrl, getCityName(), apiKey);
+	clearInput();
+}
+
+function favListHandler(event){
+	if(event.target.closest('.fav-city')){
+		getWeatherData(serverUrl, event.target.textContent, apiKey);
+	}
+	else return null;
+}
+	
+
+
+function getWeatherData(serverUrl, cityName, apiKey) {
+	const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
+	fetch(url)
+	  .then((response) => response.json())
+	  .then((weatherData) => SEARCH_TARGET_WEATHER(weatherData, SEARCH_TARGET_WEATHER_OBJECT))
+	  .then(() => renderNow())
+	  .then(() => likeIconUpdate())
+	  .catch(error => alert("Error. Please try again later."));
 }
 
 function getCityName() {
-  let input = FORM.querySelector("input");
-  let inputValue = input.value;
-  return inputValue;
+	let input = FORM.querySelector("input");
+	let inputValue = input.value;
+	return inputValue;
 }
 
-function render(data) {
-  let tab = document.querySelector("#Now");
-  let currentTemp = tab.querySelector(".temperature");
-  let currentCity = tab
-    .querySelector(".city-wrapper")
-    .querySelector(".active-city");
-  let weatherIco = tab.querySelector(".icon");
-
-  currentTemp.textContent = `${KELCIN_TO_CELSIUS(data.main.temp)}°`;
-  currentCity.textContent = `${data.name}`;
-  weatherIco.src = `./img/weather-state/${data.weather[0].main}.svg`;
-
-  currentCityName = `${data.name}`;
-  return currentCityName;
+function clearInput(){
+	let input = FORM.querySelector("input");
+	input.value = '';
 }
 
-function createFavCity(){
-	updateFavIco();
-	createElement("li","class" ,"city-in-fav-list" ,currentCityName, ".city-list-wrapper");
+function SEARCH_TARGET_WEATHER(data, object) {
+	object.name = data.name;
+	object.temp = KELCIN_TO_CELSIUS(data.main.temp);
+	object.state = data.weather[0].main;
+	object.icon = `./img/weather-state/${object.state}.svg`;
+
+	return object;
 }
 
-function updateFavIco(){
-	if(!FAV_ICO.src.includes("black"))
-		FAV_ICO.src = "./img/heart-shape-black.svg";
-	else FAV_ICO.src = "./img/heart-shape.svg";
+function renderNow(){
+	
+	console.log(SEARCH_TARGET_WEATHER_OBJECT);
+
+	let tab = document.querySelector("#Now");
+ 	let currentTemp = tab.querySelector(".temperature");
+	let currentCity = tab.querySelector(".city-wrapper").querySelector(".active-city");
+	let weatherIco = tab.querySelector(".icon");
+
+	console.log(SEARCH_TARGET_WEATHER_OBJECT.state);
+
+	currentTemp.textContent = `${SEARCH_TARGET_WEATHER_OBJECT.temp}°`;
+	currentCity.textContent = SEARCH_TARGET_WEATHER_OBJECT.name;
+	weatherIco.src = SEARCH_TARGET_WEATHER_OBJECT.icon;
 }
 
-function rebootFavIco(){
-	let favorites = document.querySelectorAll(".city-in-fav-list");
-	for (let item of favorites){
-		if (!item.innerHTML === currentCityName) 
-		FAV_ICO.src = "./img/heart-shape.svg";
-	}
-
-}
-
-function createElement(tag, atributeName, atributeValue, textContent, location){
-	let element = document.createElement(tag);
-	element.setAttribute(atributeName, atributeValue);
-	element.textContent = `${textContent}`;
-	let parentElement = document.querySelector(location);
-	parentElement.append(element);
-
-}
-
-// let response = await fetch(url);
-// let weatherData = await response.json();
-
-// console.log(weatherData);
-
-// fetch(url)
-// .then(response => response.json())
-// .then(weatherData => console.log(weatherData));
+export {SEARCH_TARGET_WEATHER_OBJECT};

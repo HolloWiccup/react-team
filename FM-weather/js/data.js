@@ -13,6 +13,7 @@ const ICONS_SRC = {
 
 const ELEMENT = {
 	FAV_LIST: document.querySelector('.city-list-wrapper'),
+	CITIES_ON_FAV_LIST: document.querySelectorAll('.fav-city'),
 }
 
 const CLASS = {

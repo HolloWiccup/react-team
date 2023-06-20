@@ -1,19 +1,31 @@
-import { SEARCH_TARGET_WEATHER_OBJECT } from "./test.js";
+import { SEARCH_TARGET_WEATHER_OBJECT } from "./main.js";
 import { ICONS_SRC, ELEMENT, CLASS } from "./data.js";
 
-const FAV_CITIES = [];
+let FAV_CITIES = [];
 const LIKE_BUTTON = document.querySelector(".like");
 
-function like_Interaction(FAV_CITIES, SEARCH_TARGET_WEATHER_OBJECT){ 
-	FAV_CITIES.includes(SEARCH_TARGET_WEATHER_OBJECT) ? 
-		FAV_CITIES.splice(SEARCH_TARGET_WEATHER_OBJECT) : 
-		FAV_CITIES.push(SEARCH_TARGET_WEATHER_OBJECT);
+function likeInteraction(){ 
+	let objectClone = Object.assign({}, SEARCH_TARGET_WEATHER_OBJECT);
 
-	return FAV_CITIES;
+	if (FAV_CITIES.length  === 0){
+		FAV_CITIES.push(objectClone);
+		addToFavList(objectClone.name);
+	}
+	else if(FAV_CITIES.find(item => item.name == SEARCH_TARGET_WEATHER_OBJECT.name)){
+		let filtered = FAV_CITIES.filter(item => item.name !== SEARCH_TARGET_WEATHER_OBJECT.name);
+		FAV_CITIES = filtered;
+		deleteFromFavList(objectClone.name);
+	}
+	else{
+		FAV_CITIES.push(objectClone);
+		addToFavList(objectClone.name);
+	};
+
+	console.log(FAV_CITIES);
 }
 
-function like_icon_update(FAV_CITIES, SEARCH_TARGET_WEATHER_OBJECT, LIKE_BUTTON){
-	FAV_CITIES.includes(SEARCH_TARGET_WEATHER_OBJECT) ? 
+function likeIconUpdate(){
+	(FAV_CITIES.find(item => item.name == SEARCH_TARGET_WEATHER_OBJECT.name)) ? 
 		LIKE_BUTTON.src = ICONS_SRC.HERAT_BLACK :
 		LIKE_BUTTON.src = ICONS_SRC.HEART;
 
@@ -35,7 +47,15 @@ function createElement(
 	return element;
  };
 
- function add_to_fav_list(cityName){
+ function addToFavList(cityName){
 	let favCity = createElement('li', CLASS.FAV_CITY, cityName);
+	favCity.setAttribute('id', cityName);
 	ELEMENT.FAV_LIST.prepend(favCity);
  }
+
+ function deleteFromFavList(cityName){
+	let favCity = document.getElementById(cityName);
+	favCity.remove();
+ }
+
+ export {FAV_CITIES, LIKE_BUTTON, likeInteraction, likeIconUpdate, addToFavList};
