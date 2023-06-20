@@ -20,7 +20,10 @@
       "module": "CommonJS"
     }
   },
-//  "include": [
-//    "./config/jest/jest-setup.ts"
-//  ]
+  "include": [
+    "./config/**/*.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "webpack.config.ts"
+  ]
 }

@@ -4,6 +4,7 @@ import { type ButtonHTMLAttributes } from 'react'
 
 export enum ButtonTheme {
   CLEAR = 'clear',
+  OUTLINE = 'outline',
 }
 
 type ButtonProps = {
