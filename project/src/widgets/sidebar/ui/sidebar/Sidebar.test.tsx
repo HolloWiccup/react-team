@@ -1,10 +1,11 @@
-// import { screen } from '@testing-library/react'
-// import { Sidebar } from './Sidebar'
-// import { renderWithTranslation } from 'shared/lib'
-//
-// describe('Sidebar', () => {
-//   test('render button', () => {
-//     renderWithTranslation(<Sidebar />)
-//     expect(screen.getByTestId('sidebar')).toBeInTheDocument()
-//   })
-// })
+import { render, screen } from '@testing-library/react'
+import { Sidebar } from './Sidebar'
+import { withTranslation } from 'react-i18next'
+
+describe('Sidebar', () => {
+  test('render button', () => {
+    const SidebarWithTranslation = withTranslation()(Sidebar)
+    render(<SidebarWithTranslation />)
+    expect(screen.getByTestId('sidebar')).toBeInTheDocument()
+  })
+})

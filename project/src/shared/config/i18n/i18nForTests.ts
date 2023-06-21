@@ -1,15 +1,15 @@
-// import i18n from 'i18next'
+// import i18nTest from 'i18next'
 // import { initReactI18next } from 'react-i18next'
 //
-// i18n.use(initReactI18next).init({
+// void i18nTest.use(initReactI18next).init({
 //   lng: 'ru',
 //   fallbackLng: 'ru',
-//   debug: false,
+//   debug: true,
 //
 //   interpolation: {
 //     escapeValue: false, // not needed for react!!
 //   },
-//   resources: { ru: { translations: {} } },
+//   resources: { ru: { translations: {} }, en: { translations: {} } },
 // })
 //
-// export default i18n
+// export default i18nTest
