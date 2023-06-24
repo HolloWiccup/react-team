@@ -1,13 +1,14 @@
 import { SEARCH_TARGET_WEATHER_OBJECT } from "./main.js";
 import { ICONS_SRC, ELEMENT, CLASS } from "./data.js";
+import { getSavedList, saveFavList } from "./storage.js";
 
-let FAV_CITIES = [];
+let FAV_CITIES = getSavedList();
 const LIKE_BUTTON = document.querySelector(".like");
 
 function likeInteraction(){ 
 	let objectClone = Object.assign({}, SEARCH_TARGET_WEATHER_OBJECT);
 
-	if (FAV_CITIES.length  === 0){
+	if (FAV_CITIES.length  == 0){
 		FAV_CITIES.push(objectClone);
 		addToFavList(objectClone.name);
 	}
@@ -20,6 +21,8 @@ function likeInteraction(){
 		FAV_CITIES.push(objectClone);
 		addToFavList(objectClone.name);
 	};
+	
+	saveFavList();
 
 	console.log(FAV_CITIES);
 }

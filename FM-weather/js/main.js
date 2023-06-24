@@ -1,5 +1,6 @@
 import { ICONS_SRC, ELEMENT } from "./data.js";
 import {FAV_CITIES, LIKE_BUTTON, likeInteraction, likeIconUpdate, addToFavList } from "./favorites.js";
+import {saveCurrentCity, saveFavList, getLastCity, getSavedList, renderSavedList} from "./storage.js";
 
 const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
 const apiKey = "ff9a92deb11480f9014deb01fb57bd09";
@@ -28,7 +29,16 @@ function likeHandler(){
 }
 
 function onloadTab(){
-	getWeatherData(serverUrl, DEFAULT_CITY, apiKey);
+	if (localStorage.length == 0){
+		getWeatherData(serverUrl, DEFAULT_CITY, apiKey);
+	}
+	else {
+		renderSavedList(getSavedList());
+		getWeatherData(serverUrl, getLastCity(), apiKey);
+		
+	}
+
+	// getWeatherData(serverUrl, DEFAULT_CITY, apiKey);
 }
 
 function formHandler(event) {
@@ -53,6 +63,7 @@ function getWeatherData(serverUrl, cityName, apiKey) {
 	  .then((response) => response.json())
 	  .then((weatherData) => SEARCH_TARGET_WEATHER(weatherData, SEARCH_TARGET_WEATHER_OBJECT))
 	  .then(() => renderNow())
+	  .then(() => saveCurrentCity())
 	  .then(() => likeIconUpdate())
 	  .catch(error => alert("Error. Please try again later."));
 }
