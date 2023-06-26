@@ -1,0 +1,27 @@
+.container {
+    margin: 0 auto;
+    width: 85%;
+}
+
+header {
+    background-color: rgb(163, 163, 214);
+}
+
+.header-block {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.7em 0;
+    align-items: baseline;
+}
+
+.header-btn {
+    border: none;
+    background-color: green;
+    color: beige;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.header-btn:hover{
+    background-color: rgb(95, 153, 95);
+}
