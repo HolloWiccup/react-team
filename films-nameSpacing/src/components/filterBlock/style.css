@@ -1,0 +1,36 @@
+.filter-block {
+    width: 20%;
+    padding: 1em 1.5em;
+    box-shadow: 0px 0px 13px 0px rgba(34, 60, 80, 0.2);
+}
+
+.filter-btn{
+    color: #FFF;
+    background-color: black;
+    padding: 0.4em 0;
+    border-radius: 3px;
+    margin-bottom: 0.7em;
+    width: 100%;
+}
+
+.filter-btn:hover {
+    background-color: rgb(83, 81, 81);
+}
+
+.filter-header {
+    font-size: 2rem;
+    margin-bottom: 0.4em;
+}
+
+.filter-subheader{
+    margin-bottom: 0.4em;
+    font-size: 1.2rem;
+}
+
+.filter-select{
+    margin-bottom: 0.4em;
+}
+
+.checkbox-block{
+    margin: 1em 0;
+}

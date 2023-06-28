@@ -1,0 +1,22 @@
+.pagin-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.btn {
+    border: none;
+    background-color: rgb(163, 163, 214);
+    padding: 5px 0px;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.btn-notactive {
+    background-color: rgb(213, 203, 188);
+}
+
+.pagin-block {
+    text-align: center;
+}
