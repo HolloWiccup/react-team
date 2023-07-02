@@ -37,8 +37,6 @@ function onloadTab(){
 		getWeatherData(serverUrl, getLastCity(), apiKey);
 		
 	}
-
-	// getWeatherData(serverUrl, DEFAULT_CITY, apiKey);
 }
 
 function formHandler(event) {
@@ -49,12 +47,10 @@ function formHandler(event) {
 }
 
 function favListHandler(event){
-	if(event.target.closest('.fav-city')){
+	if (event.target.closest('.fav-city')){
 		getWeatherData(serverUrl, event.target.textContent, apiKey);
-	}
-	else return null;
+	} else return null;
 }
-	
 
 
 function getWeatherData(serverUrl, cityName, apiKey) {
@@ -65,7 +61,8 @@ function getWeatherData(serverUrl, cityName, apiKey) {
 	  .then(() => renderNow())
 	  .then(() => saveCurrentCity())
 	  .then(() => likeIconUpdate())
-	  .catch(error => alert("Error. Please try again later."));
+	  .then(data => calcLocalTime(data.sys.sunrise, data.timezone))
+	  .catch(error => alert("Error. Please try again."));
 }
 
 function getCityName() {
@@ -81,11 +78,28 @@ function clearInput(){
 
 function SEARCH_TARGET_WEATHER(data, object) {
 	object.name = data.name;
-	object.temp = KELCIN_TO_CELSIUS(data.main.temp);
 	object.state = data.weather[0].main;
+	object.temp = KELCIN_TO_CELSIUS(data.main.temp);
+	object.feels_like = KELCIN_TO_CELSIUS(data.main.feels_like);
+	object.sunrise = new Date(data.sys.sunrise * 1000);
+	object.sunset = '';	
 	object.icon = `./img/weather-state/${object.state}.svg`;
 
 	return object;
+}
+
+
+function calcLocalTime(time, targetShift){
+	let userTime = new Date();
+	let userUTCshift = (userTime.getTimezoneOffset()) * 60 *1000;
+	let calcTargetStamp = ((time * 1000) + userUTCshift + (targetShift * 1000));
+	let result = new Date(calcTargetStamp);
+
+	console.log(userTime);
+	console.log(userUTCshift);
+	console.log(time, targetShift);
+
+
 }
 
 function renderNow(){

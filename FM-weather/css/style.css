@@ -208,6 +208,26 @@ ul {
 	padding-left: 0.75em;
 }
 
+
+/*----DETAILS TAB------*/
+
+.details-wrapper {
+	padding: 10% 0 10% 4%;
+   display: flex;
+ 	flex-direction: column;
+   justify-content: space-between;
+   gap: 5%;
+   overflow: hidden;
+}
+
+.details-item {
+	margin-bottom: 0.8em;
+    width: max-content;
+    padding: 0 2%;
+}
+
+
+
 /*----FAVORITS TAB------*/
 
 .city-list-wrapper{
