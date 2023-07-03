@@ -1,29 +1,29 @@
-import { FormEvent, useState } from "react";
+import {FormEvent, useState} from "react";
 
-const defaultValue = "";
-
+const defaultPersonValue = {
+  login: '',
+  password: ''
+}
 export const Login = () => {
   const [auth, setAuth] = useState(false);
-  const [login, setLogin] = useState(defaultValue);
-  const [password, setPassword] = useState(defaultValue);
+  const [person, setPerson] = useState(defaultPersonValue)
   const handleForm = (event: FormEvent<HTMLElement>) => {
     event.preventDefault();
-    if (login.length < 2 || password.length < 2) {
+    if (person.login.length < 2 || person.password.length < 2) {
       return;
     }
     setAuth(!auth);
-    console.log(login, password);
-    setLogin(defaultValue);
-    setPassword(defaultValue);
+    setPerson(defaultPersonValue)
   };
+
 
   return (
     <form onSubmit={handleForm}>
       <h2>{auth ? "Registration" : "Login"}</h2>
-      <input type="text" placeholder="Login" value={login}
-             onChange={(event) => setLogin(event.target.value)} />
-      <input type="text" placeholder="Password" value={password}
-             onChange={(event) => setPassword(event.target.value)} />
+      <input type="text" placeholder="Login" value={person.login}
+             onChange={(event) => setPerson({...person, login: event.target.value})}/>
+      <input type="text" placeholder="Password" value={person.password}
+             onChange={(event) => setPerson({...person, password: event.target.value})}/>
       <button type="submit">{auth ? "Register" : "Login"}</button>
     </form>
   );
