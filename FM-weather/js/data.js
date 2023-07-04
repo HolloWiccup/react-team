@@ -20,4 +20,19 @@ const CLASS = {
 	FAV_CITY: 'fav-city',
 }
 
-export {ICONS_SRC, ELEMENT, CLASS};
+const MONTHES = [
+	"January", 
+	"February", 
+	"March", 
+	"April", 
+	"May", 
+	"June", 
+	"July", 
+	"August", 
+	"September", 
+	"October", 
+	"November", 
+	"December"
+]
+
+export {ICONS_SRC, ELEMENT, CLASS, MONTHES};

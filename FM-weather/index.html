@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Document</title>
+	<title>Weather</title>
 	<link rel="stylesheet" href="css/normalise.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +36,7 @@
 
 
 				<div id="Details" class="tabcontent details-tab">
-					<h2>City</h2>
+					<h2 id="name">City</h2>
 					<ul class="details-wrapper">
 						<li class="details-item">Temperature:
 							<span id="temp"></span>
@@ -58,7 +58,21 @@
 				</div>
 
 
-				<div id="Forecast" class="tabcontent forecast-tab">Forecast</div>
+				<div id="Forecast" class="tabcontent forecast-tab">
+					<h2 class="forecast-city">City</h2>
+					<div class="forecast-scroll">
+						<div class="forecast-wrapper">
+							<!-- <div class="forecast-item prototype">
+								<span class="forecastDate">29 May</span>
+								<span class="forecastTime">00:00</span>
+								<span class="forecastTemp">Temperature: 15°</span>
+								<span class="forecastState">Clear</span>
+								<span class="forecastFeelsLike">Feels like: 16°</span>
+								<img class="forecastIcon" alt="icon-item" src="./img/weather-state/clear.svg"  >
+							</div>	 -->
+						</div>
+					</div>
+				</div>
 
 				<div class="tab-buttons-wrapper">
 					<button type="button" class="tablink now-button active" onclick="openTab(event, 'Now')">

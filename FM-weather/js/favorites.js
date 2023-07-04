@@ -61,4 +61,4 @@ function createElement(
 	favCity.remove();
  }
 
- export {FAV_CITIES, LIKE_BUTTON, likeInteraction, likeIconUpdate, addToFavList};
+ export {FAV_CITIES, LIKE_BUTTON, likeInteraction, likeIconUpdate, addToFavList, createElement};
