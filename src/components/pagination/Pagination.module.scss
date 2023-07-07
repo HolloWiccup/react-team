@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.buttons-block{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  button {
+    background-color: #9898ff;
+    flex: 1 1 auto;
+    border-radius: 2px;
+  }
+}

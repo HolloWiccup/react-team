@@ -1,0 +1,12 @@
+@import "reset";
+@import "global";
+
+.app {
+  min-height: 100vh;
+  //background-color: red;
+}
+
+.content-page {
+  display: flex;
+  padding: var(--conten-page-padding);
+}
