@@ -1,14 +1,13 @@
-import Navbar from "./navbar/Navbar.tsx";
-import Sidebar from "./sidebar/Sidebar.tsx";
+import MovieAppBar from "./app-bar/MovieAppBar.tsx";
+import {Outlet} from "react-router-dom";
 
 
 function App() {
+
   return (
-    <div className='app' >
-      <Navbar />
-      <div className='content-page'>
-        <Sidebar />
-      </div>
+    <div className='app'>
+      <MovieAppBar/>
+      <Outlet />
     </div>
   )
 }
